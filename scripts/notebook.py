@@ -38,7 +38,7 @@ if in_colab:
 #cwd if in colab for imports to work
 if in_colab:
     # %cd /content/PMT_linearization
-    
+
 from src import data_io as io
 from src import plotting
 from src import computation as comp
@@ -48,6 +48,7 @@ from src import computation as comp
 #imports
 from matplotlib import pyplot as plt
 import os
+import numpy as np
 
 # + colab={"base_uri": "https://localhost:8080/"} id="a06b6e4a" outputId="989c69e2-c8c4-43e0-9ba6-7a36f66be4c3"
 #define paths
@@ -62,16 +63,55 @@ os.path.exists(test_path)
 
 # + colab={"base_uri": "https://localhost:8080/"} id="b3586a50" outputId="56f159c6-3dbc-4b37-d217-083fb5d2e792"
 #data inputs
-io.readfile(test_path)
+#im = io.imread(fullpath)
+
+x = np.arange(0, 350)
+x, y = comp.fake_pmt_n(x)
+fig, ax = plotting.plot_pmt_nonlinearity(x, y)
+
+
+
+fake_ratio = 2.
+fake_true_photons, fake_green_channel = comp.fake_pmt_n(np.arange(0,140,fake_ratio))
+
+fake_x2, fake_red_channel = comp.fake_pmt_n(fake_true_photons/fake_ratio, round=False)
+channel_i = 0
+channel_j = 1
+fig, ax, title = plotting.plot_channels(fake_green_channel, fake_red_channel, channel_i, channel_j)
 
 
 
 # + id="82a5927b"
 #data manipulation
 
+xs, ys, xs_per_y = comp.get_unmixing_ratio(fake_green_channel, fake_red_channel)
+fig, ax, title = plotting.plot_unmixing_vectors(xs, ys, channel_i, channel_j, label='FakeFP', plot=True)
+
+detected_photons, true_photons = comp.compute_PMT_nonlinearity(fake_green_channel, fake_red_channel, xs_per_y)
+#whats the best way to handle X possibly being larger than y? we want to get the same curve either way. 
+
+#print(fake_green_channel)
+#print(detected_photons)
+
+#print(true_photons)
+fig, ax = plotting.plot_pmt_nonlinearity(true_photons, detected_photons)
+
+
+#fullpath = os.path.join(current_data_dir, file)
+#for i in range(im.shape[3]):
+#  for j in range(im.shape[3]):
+
 
 # + id="f700a7f6"
 #plots
+new_y = list(range(6,149))
+new_x = []
+for i in new_y:
+    new_x.append(comp.correct_PMT_nonlinearity(i, y, x))
+
+fig, ax = plotting.plot_pmt_nonlinearity(new_x, new_y)
+
+
 
 
 # + id="8dd23ba7"
