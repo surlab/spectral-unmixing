@@ -6,6 +6,13 @@ import numpy as np
 
 from src import config as cfg
 
+
+
+    
+def fp_from_tiffname(filename):
+    idx = filename.lower().find('fp')
+    return filename[idx-1:idx+2]
+
 def fake_pmt(actual_photons):
     if actual_photons< 15:
         return actual_photons
@@ -50,7 +57,7 @@ def get_unmixing_ratio(xs_in, ys_in):
     return xs, ys, xs_per_y
 
 
-def switch_channels(chanX, chanY):
+def switch_channels(chanX, chanY, xs_per_y):
     print("switching axis")
     xs_per_y = 1/xs_per_y
     return chanY, chanX, xs_per_y
@@ -93,7 +100,7 @@ def compute_PMT_nonlinearity(chanX, chanY, xs_per_y):
 def correct_PMT_nonlinearity(photons_measured_to_correct, detected_photons_list, true_photons_list):
 
     try:
-        assert(photons_measured_to_correct<np.max(detected_photons_list) and photons_measured_to_correct>np.min(detected_photons_list))
+        assert(photons_measured_to_correct<=np.max(detected_photons_list) and photons_measured_to_correct>=np.min(detected_photons_list))
     except AssertionError as E:
         raise(ValueError("the measured photons are not in the correctable range"))
 

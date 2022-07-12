@@ -18,12 +18,12 @@ def plot_pmt_nonlinearity(true_photons, detected_photons, plot=True):
 def plot_channels_im(im, channel_i, channel_j):    
     plot_channels(im[:,:,:,channel_i], im[:,:,:,channel_j], channel_i, channel_j)
     
-def plot_channels(x, y, i, j, plot=True):
+def plot_channels(x, y, i, j, plot=True, alpha=.01, label=''):
     fig1, ax1 = plt.subplots()
-    ax1.scatter(x, y , alpha= .01)
+    ax1.scatter(x, y , alpha=alpha)
     ax1.set_xlabel('Channel '+str(i+1))
     ax1.set_ylabel('Channel '+str(j+1))
-    title = 'Ch '+str(i+1)+' vs Ch'+str(j+1)+'.png'
+    title = f"Ch{i} vs Ch{j} for {label}"
     ax1.set_title(str(title))
     ax1.set_aspect('equal', adjustable='box')
     if plot:

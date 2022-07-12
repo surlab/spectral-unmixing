@@ -42,6 +42,7 @@ if in_colab:
 from src import data_io as io
 from src import plotting
 from src import computation as comp
+from src import main
 
 
 # + id="db51ef2e"
@@ -62,9 +63,8 @@ print(os.getcwd())
 os.path.exists(test_path)
 
 # + colab={"base_uri": "https://localhost:8080/"} id="b3586a50" outputId="56f159c6-3dbc-4b37-d217-083fb5d2e792"
-#data inputs
-#im = io.imread(fullpath)
 
+fp = 'FakeFP'
 x = np.arange(0, 350)
 x, y = comp.fake_pmt_n(x)
 fig, ax = plotting.plot_pmt_nonlinearity(x, y)
@@ -77,43 +77,77 @@ fake_true_photons, fake_green_channel = comp.fake_pmt_n(np.arange(0,140,fake_rat
 fake_x2, fake_red_channel = comp.fake_pmt_n(fake_true_photons/fake_ratio, round=False)
 channel_i = 0
 channel_j = 1
-fig, ax, title = plotting.plot_channels(fake_green_channel, fake_red_channel, channel_i, channel_j)
-
+fig, ax, title = plotting.plot_channels(fake_green_channel, fake_red_channel, channel_i, channel_j, alpha=1, label=fp)
+io.savefig(fig, title)
 
 
 # + id="82a5927b"
 #data manipulation
 
 xs, ys, xs_per_y = comp.get_unmixing_ratio(fake_green_channel, fake_red_channel)
-fig, ax, title = plotting.plot_unmixing_vectors(xs, ys, channel_i, channel_j, label='FakeFP', plot=True)
+fig, ax, title = plotting.plot_unmixing_vectors(xs, ys, channel_i, channel_j, label=fp, plot=True)
+io.savefig(fig, title)
+
+
+# +
 
 detected_photons, true_photons = comp.compute_PMT_nonlinearity(fake_green_channel, fake_red_channel, xs_per_y)
 #whats the best way to handle X possibly being larger than y? we want to get the same curve either way. 
 
-#print(fake_green_channel)
-#print(detected_photons)
-
-#print(true_photons)
+#Plot the inferred nonlinearity and see if it matches
 fig, ax = plotting.plot_pmt_nonlinearity(true_photons, detected_photons)
+io.savefig(fig, f'PMT curve from {fp} on {channel_i}{channel_j}')
 
 
-#fullpath = os.path.join(current_data_dir, file)
-#for i in range(im.shape[3]):
-#  for j in range(im.shape[3]):
+# +
+
+#use the inferred nonlinearity to correct both channels then plot. The result should be linear
+corrected_green = []
+corrected_red = []
+
+for g,r in zip(fake_green_channel, fake_red_channel):
+    try:
+        corrected_green.append(comp.correct_PMT_nonlinearity(g, detected_photons, true_photons))
+        corrected_red.append(comp.correct_PMT_nonlinearity(r, detected_photons, true_photons))
+    except Exception as E:
+        print(g,r)
+
+fig, ax, title = plotting.plot_channels(corrected_green, corrected_red, channel_i, channel_j, alpha=1, label=f'{fp}_corrected')
+io.savefig(fig, title)
 
 
 # + id="f700a7f6"
-#plots
-new_y = list(range(6,149))
-new_x = []
-for i in new_y:
-    new_x.append(comp.correct_PMT_nonlinearity(i, y, x))
+#Now lets do it with an image of actual flourophores
 
-fig, ax = plotting.plot_pmt_nonlinearity(new_x, new_y)
+filename = "YFP_10us__STACK.tiff"
+filepath = os.path.join('demo_data', filename)
+os.path.exists(filepath)
+
+im = io.imread(filepath)
+fp = comp.fp_from_tiffname(filename)
+
+for i in range(im.shape[3]):
+    for j in range(im.shape[3]):
+        if j>i:
+            main.main(fp, i, j, im[:,:,:,i].flatten(), im[:,:,:,j].flatten(), alpha=.01)
 
 
 
 
 # + id="8dd23ba7"
 #data output
+
+filename = "YFP_10us__STACK.tiff"
+idx = filename.lower().find('fp')
+filename[idx-1:idx+2]
+# +
+
+l = ('a', 'b')
+os.path.join(*l)
+
+# -
+
+
+main.main('FakeFP', 4, 6, fake_red_channel, fake_green_channel, alpha=1)
+
 
