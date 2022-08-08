@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0e3c1760-7c0a-471a-93ee-9968dfd309ec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/scripts/notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/notebook.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/notebook.md" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/notebook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/notebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/notebook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for FakeFP.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for FakeFP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for FakeFP_corrected.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for FakeFP_corrected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for YFP.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for YFP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for YFP_corrected.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch1 for YFP_corrected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch2 for YFP.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch2 for YFP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch2 for YFP_corrected.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch0 vs Ch2 for YFP_corrected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch1 vs Ch2 for YFP.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch1 vs Ch2 for YFP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Ch1 vs Ch2 for YFP_corrected.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Ch1 vs Ch2 for YFP_corrected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/PMT curve from FakeFP on 01.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/PMT curve from FakeFP on 01.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/PMT curve from YFP on 01.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/PMT curve from YFP on 01.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/PMT curve from YFP on 02.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/PMT curve from YFP on 02.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/PMT curve from YFP on 12.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/PMT curve from YFP on 12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Valid unmixing ratio for FakeFP.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Valid unmixing ratio for FakeFP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/results/figures/Valid unmixing ratio for YFP.png" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/results/figures/Valid unmixing ratio for YFP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/computation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/computation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_io.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/plotting.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/notebook.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/scripts/notebook.ipynb" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="24" />
+    <option name="y" value="23" />
+    <option name="width" value="1260" />
+    <option name="height" value="737" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PMT_linearization" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMT_linearization" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMT_linearization" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMT_linearization" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMT_linearization" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMT_linearization" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Course" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="24" y="23" width="1260" height="737" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939467" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Educational.CheckDetails" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/config_local.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/computation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1461" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/computation_local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2160" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/notebook.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="9" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
