@@ -105,8 +105,8 @@ detected_photons, true_photons = comp.compute_PMT_nonlinearity(fake_green_channe
 #Plot the inferred nonlinearity and see if it matches
 fig, ax = plotting.plot_pmt_nonlinearity(true_photons, detected_photons)
 io.savefig(fig, f'PMT curve from {fp} on {channel_i}{channel_j}')
-
 ```
+
 
 ```python
 
@@ -123,8 +123,8 @@ for g,r in zip(fake_green_channel, fake_red_channel):
 
 fig, ax, title = plotting.plot_channels(corrected_green, corrected_red, channel_i, channel_j, alpha=1, label=f'{fp}_corrected')
 io.savefig(fig, title)
-
 ```
+
 
 ```python id="f700a7f6"
 #Now lets do it with an image of actual flourophores
