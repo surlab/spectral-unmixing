@@ -1,5 +1,7 @@
 # +
 from matplotlib import pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+#import mpl_toolkits
 import numpy as np
 from src import config as cfg
 
@@ -114,3 +116,31 @@ def plot_PMT_curves(pmt_curves, plot=True, ax=None):
     ax.set(xlim=(0, 300), ylim=(0, 300))
     plt.legend()
     return fig, ax
+
+
+def plot_frame(channel, frame, image, ax=None):
+    fig, ax = new_ax(ax)
+    im = ax.imshow(image[frame,:,:,channel])
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes('right', size='5%', pad=.05)
+    plt.colorbar(im, cax=cax)
+
+    #This is VERY slow... maybe np.hist first?
+    #ax.hist(image[channel,:,:,frame].reshape(1,800*800))
+    return fig, ax
+
+def paired_images_single_channel(image1, image2, frame, channel):
+    fig, axs = plt.subplots(1,2, figsize=(15, 8))
+    plot_frame(channel, frame, image1, axs[0])
+    axs[0].set_title(f'Original image, channel {channel}, frame {frame}')
+    plot_frame(channel, frame, image2, axs[1])
+    axs[1].set_title(f'Unmixed image, channel {channel}, frame {frame}')
+
+
+
+def single_frame_all_channels(image, frame, channel):
+    channels = cfg.get_channels(image)
+    fig, axs = plt.subplots(channels,1, figsize=(16, 16*channels))
+    for i in range(channels):
+        plot_frame(i, frame, image, axs[i])
+        axs[i].set_title(f'Original image, channel {i}, frame {frame}')

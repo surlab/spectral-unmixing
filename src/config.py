@@ -19,18 +19,47 @@ resolution = 3
 spread_limit = 50
 spread_interval = 15
 combine_counts = 3
-spread_bin_size = 3
+spread_bin_size = 1
 
 figure_path = ("scripts", "results", "figures")
 results_path = ("scripts", "results",)
+save_data_path = ("scripts", "data")
 valid_curve_json_filename = 'valid_curves.json'
 
 #path pieces to use for the correction
 master_PMT_curve_corrections_suffix = "_mean_2022_08_08_16_16_.npy"
+
+#can't remember what this was for... I think maybe you need the counts before using the mean??
 channel_counts = {
                     'ch0': "_ch1_2022_08_08_16_16_.npy",
                     'ch1': "_ch1_2022_08_08_16_16_.npy",
                     'ch2': "_ch1_2022_08_08_16_16_.npy"}
 
-num_channels = 3
+num_channels = 4
+
+channel_set = 'BGR'
+
+#range for computing the unmixing coefficients on the linearized images
+range_min = min_lin_val
+range_max = 250
+
+save_array_as = 'csv' #csv or npy
+
+
+#unmixing_mat = np.array(
+#        [[1, 0, 0],
+#        [0, 1, 0],
+#        [0, 0, 1]])
+fps = ['TFP', 'YFP', 'TDTfp']
+
+try:
+  import google.colab
+  in_colab = True
+except:
+  in_colab = False
+print(f'Session is in colab: {in_colab}')
+
+
+def get_channels(image):
+    return image.shape[-1]
 

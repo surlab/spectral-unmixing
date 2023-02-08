@@ -15,5 +15,9 @@
     "YFP_12.npy": true,
     "YFP_02.npy": false,
     "_02.npy": false,
-    "YFP_01.npy": true
+    "YFP_01.npy": true,
+    "FakeFP_01.npy": false,
+    "_2022_08_08_16_07_.npy": false,
+    "mean_2022_08_08_16_16_.npy": false,
+    "FakeFP_46.npy": false
 }

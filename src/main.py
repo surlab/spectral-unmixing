@@ -6,9 +6,7 @@ import numpy as np
 
 from matplotlib import pyplot as plt
 
-
-def main(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
-
+def main_scatter_only(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
     # plot a scatter plot of the existing pixels
     fig, ax, title = plotting.plot_channels(
         channel_i, channel_j, i_number, j_number, alpha=alpha, label=fp, plot=False
@@ -21,6 +19,11 @@ def main(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
         ordered_is, mean_js, i_number, j_number, alpha=1, label=fp, ax=ax, color="r"
     )
     io.savefig(fig, title)
+
+
+def main(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
+    main_scatter_only(fp, i_number, j_number, channel_i, channel_j, alpha)
+
 
     # plot and save the unmixing ratio that will be used for this image and pair of channels
     xs, ys, xs_per_y = comp.get_unmixing_ratio(ordered_is, mean_js)
@@ -79,3 +82,27 @@ def main(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
     io.savefig(fig, f"spread_{j_number}_for_{fp}")
 
     # raise()
+
+class UnmixingSession:
+        def __init__(self):
+            pass
+
+
+
+
+def process_image(cfg, image):
+    if cfg.linearize_PMTs:
+        #new_image = main.linearize_PMTs(image)
+        #Need to implement this ^^^
+        new_image = image
+    else:
+        new_image = image
+
+    if cfg.unmix:
+        nonnegative= 'non_negative_least_squares' in cfg.handle_negatives.lower()
+        new_image, residuals = comp.unmix(cfg.unmixing_mat, new_image, nonnegative = nonnegative, verbose=True)
+        if 'set_to_zero' in cfg.handle_negatives.lower():
+            new_image[new_image<0]=0
+        #pass
+    return new_image, residuals
+

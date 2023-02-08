@@ -3,13 +3,22 @@ import matplotlib.pyplot as plt
 import os
 import glob
 import numpy as np
+import logging
+from scipy.optimize import nnls
+
 
 from src import config as cfg
+from src import data_io as io
+
+import logging
 
 
 def fp_from_tiffname(filename):
     idx = filename.lower().find("fp")
-    return filename[idx - 1 : idx + 2]
+    for i in range(1, idx+1):
+        if filename[idx - (i)].islower():
+            break
+    return filename[idx - (i) : idx + 2]
 
 
 def fake_pmt(actual_photons):
@@ -58,6 +67,36 @@ def get_valid_pairs(xs_in, ys_in, override_bounds=False):
             xs.append(x / length)
             ys.append(y / length)
     return xs, ys
+
+
+def get_unmixing_coefs(im_array):
+    #identify the axis for color channel
+    channel_axis = im_1.shape.index(cfg.num_channels)
+
+    #whats the numpy way to do this? we don't really care if this is fast, but I want to practice thinking this way...
+    #mask out all the invalidvalid values
+
+    #maybe we should flaten it first? to just 2 dimensions? channel and value
+
+    #find the channel with the highes max/most variance
+
+    #what if we actually did the division first, then there are no new masks
+
+    #then create new masks I think you have to loop here?
+    #No - create an array of all the desired inputs (make sure they are all present in the looping axis
+
+    #pull out the masked values and then average
+
+    #we should now have an array that is channels by X values
+    #we divide it by the x value (including the one that has said x values)
+
+    #then take the mean across the values axis
+
+
+    #im = np.rollaxis(im, channel_axis)
+    #for
+    return coefs_arrray
+
 
 
 def get_unmixing_ratio(xs_in, ys_in):
@@ -158,27 +197,36 @@ def compute_PMT_nonlinearity(chanX, chanY, xs_per_y):
 def correct_PMT_nonlinearity(
                             photons_measured_to_correct,
                             detected_photons_list,
-                            true_photons_list):
-
+                            true_photons_list, override=False):
+    invalid_photons = np.logical_or(
+                               photons_measured_to_correct >= np.max(detected_photons_list),
+                               photons_measured_to_correct < 0)
     try:
-        valid_photons = np.logical_and(
-                                       photons_measured_to_correct <= np.max(detected_photons_list),
-                                       photons_measured_to_correct >= 0)
-        assert valid_photons.all() #np.min(detected_photons_list)).all()
+        invalid_count = np.sum(invalid_photons)
+        assert invalid_count==0 #np.min(detected_photons_list)).all()
 
     except AssertionError as E:
-        print(valid_photons)
-        raise (ValueError("some measured photons are not in the correctable range"))
-
+        #print(np.nonzero(invalid_photons))
+        err_str = f"{invalid_count} measured pixels are not in the correctable range of photons"
+        if not override:
+            raise (ValueError(err_str))
+        else:
+            logging.warning(err_str)
     # We want to make sure it starts at 0,0, otherwise this will cause strange behavior.
     # Should be linear through the first few points anyway
     detected_photons_list[0] = 0
     true_photons_list[0] = 0
 
+    #Add an entry to the end so that all idicies work
+    detected_photons_list = np.hstack((detected_photons_list, np.max(photons_measured_to_correct)+1))
+    true_photons_list = np.hstack((true_photons_list, true_photons_list[-1]))
 
     # linearly interpolate to between the two adjacent points and return the y value
     # use searchsorted to find where this measured photons would be placed (its a mean so won't be an int)
     idxs = np.searchsorted(detected_photons_list, photons_measured_to_correct) - 1
+    #print(np.max(idxs))
+    #print(np.max(detected_photons_list))
+    #print()
 
     # compute the fraction of the distance travelled to the next x point
     x_diff = detected_photons_list[idxs + 1] - detected_photons_list[idxs]
@@ -188,6 +236,9 @@ def correct_PMT_nonlinearity(
     # and go the same distance to the corresponding next y point
     y_diff = true_photons_list[idxs + 1] - true_photons_list[idxs]
     y = true_photons_list[idxs] + frac * y_diff
+    if override:
+        y[invalid_photons] = np.inf
+        #could also do this to retrive the originals
 
     return y
 
@@ -210,6 +261,67 @@ def get_average_curve(curve_dict):
     return {'corrections': xs, 'counts': mean_curve}
 
 
-def linearize_image(image_path):
-    pass
+def linearize_image(im):
+    counts, corrections = io.load_master_PMT_curve()
+    lin_im = correct_PMT_nonlinearity(
+                                im,
+                                counts,
+                                corrections,
+                                override=True)
+    return lin_im
+
+
+def mock_unmixing(A, x_known, verbose=False):
+    # Compute the detected flourescence amounts
+    b = np.dot(A, x_known)
+    b, x_inferred, res = unmix(A, b, verbose)
+    if verbose:
+        print(f"Actual flourophore amounts = {x_known}")
+    return b, x_inferred, res
+
+def test_unmixing_mat(A, verbose=False):
+    C, N = A.shape
+    if verbose:
+        print(f"Unmixing Matrix = ")
+        print(F"{A}")
+        print(f"Number of flourophores = {N}, Channels = {C}")
+    assert C>=N, f"The number of flourophores ({N})must be less than or equal to the number of channels ({C})"
+
+
+def unmix(A, b, nonnegative=False, verbose=False):
+    test_unmixing_mat(A, verbose=verbose)
+    C_mat = A.shape[0]
+    C_im = b.shape[-1]
+    assert C_mat == C_im, f"The number of channels in the image and the unmixing matrix must be the same. Image channels = {C_im}, Unmixing channels = {C_mat}"
+
+    #have to flatten and then reshape b - np.linalg.lstsq only works for 1 and 2 d arrays
+    reorder_axis = np.moveaxis(b, -1, 0)
+    total_pixels = np.prod(np.array(reorder_axis.shape[1:]))
+
+    channels_x_pixels = reorder_axis.reshape(C_im, total_pixels)
+
+    # Compute the inferred flourophore amounts
+
+    if nonnegative:
+        #only positive values - MUCH slower. Consider using numba and implementing yourself if we do this a lot?
+        x_inferred = np.empty(channels_x_pixels.shape)
+        res = np.empty(channels_x_pixels.shape[1])
+        for i in range(channels_x_pixels.shape[1]):
+            x, r = nnls(A, channels_x_pixels[:,i])
+            x_inferred[:,i] = x
+            res[i] = r
+    else:
+        x_inferred, res, rank, s = np.linalg.lstsq(A, channels_x_pixels)
+
+    if verbose:
+        min_val = np.min(x_inferred)
+        if min_val<-10:
+            logging.warning(f'Some large negative pixel intensities were computed, as low as {min_val}. This may indicate an error in imaging or the coefficient matrix')
+
+    unmixed_reorder_axis = np.reshape(x_inferred, reorder_axis.shape)
+    unmixed = np.moveaxis(unmixed_reorder_axis, 0, -1)
+
+    return unmixed, res
+
+
 
