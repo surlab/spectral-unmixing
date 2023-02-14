@@ -301,11 +301,11 @@ def get_unmixing_mat(flourophore_list = None):
 
 def umixing_app_save(cfg, image, new_image):
     if cfg.save_original_tiff:
-        new_filename = f"{cfg.filename}{bool(cfg.linearize_PMTs)*'_linearized'}{bool(cfg.unmix)*'_original'}"
+        new_filename = f"{cfg.filename}_original"
         write_composite_4d_tiff(image, cfg.save_path, new_filename, verbose=True, compression=cfg.compression,)
 
     if cfg.save_processed_tiff:
-        new_filename = f"{cfg.filename}{bool(cfg.linearize_PMTs)*'_linearized'}{bool(cfg.unmix)*'_unmixed'}"
+        new_filename = f"{cfg.filename}{bool(cfg.linearize_PMTs)*'_linearized'}{bool(cfg.unmix)*'_unmixed'}{bool(cfg.smoothing)*'_smoothed'}"
         write_composite_4d_tiff(new_image, cfg.save_path, new_filename, verbose=True, compression=cfg.compression)
 
 

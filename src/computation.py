@@ -5,6 +5,7 @@ import glob
 import numpy as np
 import logging
 from scipy.optimize import nnls
+import scipy.ndimage
 
 
 from src import config as cfg
@@ -322,6 +323,28 @@ def unmix(A, b, nonnegative=False, verbose=False):
     unmixed = np.moveaxis(unmixed_reorder_axis, 0, -1)
 
     return unmixed, res
+
+
+def original_spline_smoothing(image):
+    """This is the original smoothing algorithm copied from the version
+    of the unmixing algorithm that only works on Matlab 2018...
+    """
+
+    spline_filter = np.array([[[[0.0039,    0.0156,    0.0234,    0.0156,    0.0039],
+        [0.0156,    0.0625,    0.0938,    0.0625,    0.0156],
+        [0.0234,    0.0938,    0.1406,    0.0938,    0.0234],
+        [0.0156,    0.0625,    0.0938,    0.0625,    0.0156],
+        [0.0039,    0.0156,    0.0234,    0.0156,    0.0039]]]])   # 2D B3-Spline filter
+
+    spline_filter = np.moveaxis(spline_filter, 0, -1)
+     #t_sm = imfilter(t,h);
+     #v_sm = imfilter(v,h);
+     #y_sm = imfilter(y,h);
+     #see https://stackoverflow.com/questions/22142369/the-equivalent-function-of-matlab-imfilter-in-python
+
+    new_image = scipy.ndimage.correlate(image, spline_filter, mode='constant')
+
+    return new_image
 
 
 

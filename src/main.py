@@ -6,6 +6,8 @@ import numpy as np
 
 from matplotlib import pyplot as plt
 
+import os
+
 def main_scatter_only(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
     # plot a scatter plot of the existing pixels
     fig, ax, title = plotting.plot_channels(
@@ -84,8 +86,28 @@ def main(fp, i_number, j_number, channel_i, channel_j, alpha=0.01):
     # raise()
 
 class UnmixingSession:
-        def __init__(self):
-            pass
+    def __init__(self):
+        pass
+
+    def my_init(self, verbose=False):
+        supdir, filename = os.path.split(self.open_path)
+        if self.save_path is None:
+            self.save_path = self.open_path if os.path.isdir(self.open_path) else supdir
+        self.filename = os.path.splitext(filename)[0]
+
+        unmixing_mat = []
+        for fp, coefs in self.unmixing_coefficient_dict.items():
+            unmixing_mat.append(coefs)
+        self.unmixing_mat= np.array(unmixing_mat).T
+        self.num_channels = self.unmixing_mat.shape[0]
+
+        if verbose:
+            print('Using the following values:')
+            print(f'Save path = {self.save_path}')
+            print(f'Filename = {self.filename}')
+            print(f'Number of channels = {self.num_channels}')
+            print(f'Unmixing matrix = \n{self.unmixing_mat}')
+
 
 
 
@@ -103,6 +125,12 @@ def process_image(cfg, image):
         new_image, residuals = comp.unmix(cfg.unmixing_mat, new_image, nonnegative = nonnegative, verbose=True)
         if 'set_to_zero' in cfg.handle_negatives.lower():
             new_image[new_image<0]=0
-        #pass
+    else:
+        residuals = None
+
+    if cfg.smoothing:
+        if 'original_spline_smoothing' in cfg.smoothing.lower():
+            new_image = comp.original_spline_smoothing(new_image)
+
     return new_image, residuals
 
