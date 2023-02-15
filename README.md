@@ -9,7 +9,7 @@ Also implements a number of useful steps for you imaging pipeline:
 
 1. A recent Python distribution is required. Installing anaconda and checking the box to add it to your path during the installation is one of the easiest ways to satisfy this requirement.
 
-2. Open a terminal and type:
+2. Open a terminal (or anaconda prompt if anaconda was not added to the path) and type:
 
 ```bash
 cd ..\documents\code #or similar as relevant for your machine
