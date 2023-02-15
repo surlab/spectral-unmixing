@@ -72,6 +72,8 @@ Note: Currently if a file undergoes the same processing steps with different par
 
 It is important that you QC the results of this code and do not trust it blindly. It should be clear that bleed through is being removed where flourophores contribute a substatial proportion of flourescence to two or more channels. You should verify that the smoothing is appropriate for you use case and the size  of the structures typically imaged, the resolution of the scope and the distance between pixels. 
 
+Beware that the PMTs output is not linear after a certain range. This will compromise the unmixing. Make sure the structures/pixels you are interested in are within the linear range, or if you attempt to linearize the PMT signal the range that can be adequately corrected back to linear.
+
 # Credit
 
 This code was created for the surlab at MIT by Gregg Heller. It was created using images provided by Kendyll Burnell and Josiah Boivin and partially based off of code by previous members of the Nedivi lab _____ and ______ (strictly the reading of the I16s and the application of the smoothing). 
