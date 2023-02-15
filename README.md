@@ -8,9 +8,8 @@ Also implements a number of useful steps for you imaging pipeline:
 ## Installation instructions
 
 1. A recent Python distribution is required. Installing anaconda and checking the box to add it to your path during the installation is one of the easiest ways to satisfy this requirement.
-
-2. Open a terminal (or anaconda prompt if anaconda was not added to the path) and type:
-
+1. you will also need to install git
+1. Open a terminal (or anaconda prompt if anaconda was not added to the path) and type:
 ```bash
 cd ..\documents\code #or similar as relevant for your machine
 git clone git@github.com:GreggHeller1/spectral-unmixing.git
@@ -20,8 +19,8 @@ conda activate spectral-unmixing
 
 ```
 
-3. Code should now be installed and the spectral-unmixing environment should still be activated. 
-4. Currently functionality is best accessed through a jupyter notebook, although it should be fairly easy to implement a command line tool or a gui. For now:
+1. Code should now be installed and the spectral-unmixing environment should still be activated. 
+1. Currently functionality is best accessed through a jupyter notebook, although it should be fairly easy to implement a command line tool or a gui. For now:
 
 ```bash
 cd path/to/spectral-unmixing
