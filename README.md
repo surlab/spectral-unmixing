@@ -14,24 +14,28 @@ Also implements a number of useful steps for you imaging pipeline:
 cd ..\documents\code #or similar as relevant for your machine
 git clone https://github.com/GreggHeller1/spectral-unmixing.git
 cd spectral-unmixing
-conda env create -f environment.yml
+conda env create -f environment_windows.yml  ## or on a mac machine >>> conda env create -f environment_mac.yml
 conda activate spectral-unmixing
-
+pip install -e .
 ```
 
 1. Code should now be installed and the spectral-unmixing environment should still be activated. 
 1. Currently functionality is best accessed through a jupyter notebook, although it should be fairly easy to implement a command line tool or a gui. For now:
 
+## Usage instructions
+
+Double click the file start_unmixing_notebook_windows or start_unmixing_notebook_mac
+It is recomended that you create shortcuts to these on the desktop or menu bar for convenient use. 
+
+OR:
+
 ```bash
 cd path/to/spectral-unmixing
-cd app_scripts
+cd user_scripts
 jupyter Notebook
 ```
 
-OR:
-Edit the approprieate "start_unmixing_app_windows" or "start_unmixing_app_mac" file as needed so that paths are correct (add more detail here)
 
-## Usage instructions
 ### Input Files:
 In the notebook, there are a number of parameters. Most are described inline
 Most importantly "open_path" should lead to a directory with a series of I16 files suffixed with _Z0.I16, _Z1.I16, _Z2.I16,... _Z###.I16 OR a tiff file.
