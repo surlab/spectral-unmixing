@@ -12,7 +12,7 @@ Also implements a number of useful steps for you imaging pipeline:
 1. Open a terminal (or anaconda prompt if anaconda was not added to the path) and type:
 ```bash
 cd ..\documents\code #or similar as relevant for your machine
-git clone git@github.com:GreggHeller1/spectral-unmixing.git
+git clone https://github.com/GreggHeller1/spectral-unmixing.git
 cd spectral-unmixing
 conda env create -f environment.yml
 conda activate spectral-unmixing
