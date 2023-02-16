@@ -114,6 +114,7 @@ class UnmixingSession:
 
 def process_image(cfg, image):
     if cfg.linearize_PMTs:
+        print('Performing PMT linearlization')
         #new_image = main.linearize_PMTs(image)
         #Need to implement this ^^^
         new_image = image
@@ -121,6 +122,7 @@ def process_image(cfg, image):
         new_image = image
 
     if cfg.unmix:
+        print('Performing unmixing')
         nonnegative= 'non_negative_least_squares' in cfg.handle_negatives.lower()
         new_image, residuals = comp.unmix(cfg.unmixing_mat, new_image, nonnegative = nonnegative, verbose=True)
         if 'set_to_zero' in cfg.handle_negatives.lower():
@@ -129,6 +131,7 @@ def process_image(cfg, image):
         residuals = None
 
     if cfg.smoothing:
+        print('Performing smoothing')
         if 'original_spline_smoothing' in cfg.smoothing.lower():
             new_image = comp.original_spline_smoothing(new_image)
 
