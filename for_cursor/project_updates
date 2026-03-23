@@ -1,0 +1,166 @@
+project updates
+
+I got some feedback! Here is the plan to continue working
+
+Done - Task A. First refactor code - so each figure has a config dict in a config file (1 config file so I can see them all together).  and each subplot function has a nice descriptive name (no more "subpabel1a in naming, but still lettered for convenient reference)? each subplot function takes nice inputs so it can be reused with just changes to the config for a figure. Functions for each figure specify the wrappers for the generic plotting functions. "main" function for each figue loops through all the wrapper functions, suppling the correct arguments from the input dict (which defaults to what is in the config dict for that figure if called with no input)
+
+Done - Task B. produce a file that documents the generic plotting functions succinctly for me so I can see what we have - table style (tsv). identification Letter (A through Z), function name, description, inputs
+
+===================================================================
+
+Keep refining the plots we already have - mostly the 3d scatterplots - I have now moved the refinements so they are associated with the proper subpanel
+
+=================================
+
+
+ Yellow coloring for tdtomato added to config
+ Yellow shading for orange filter added to config 
+
+
+================================
+New figure plan:
+
+Fig 1 Pipeline graphic
+1.1 Simulate, optimize and select flourophores, filters and excitation wavelengths
+1.2 test system
+Pmt linearity, expected excitation and transmission, sufficient seperability 
+1.3 run experiment 
+Collect functional t series and structural z series’s 
+Align z series to functional imaging plane (xyz)
+roi detection from red channel
+Classification of rois
+Extraction of traces 
+
+===============================
+For 1.1 - show 
+A placeholder panel description (TODO: add description)
+B excitation spectra 
+    fps - tdtom, mcherry, mneptune
+    excitation wavelengths - 1040, 1080, 1180, 1240
+    make sure tdtomaro color and 1040 excitation line color come through properly from config
+
+C emission spectra 
+    make sure orange filter color comes through properly from config
+
+D unmixing vectors as bar chart 
+ (1040+orange 40mW, 1180+red 30mW, 1240+FarRed 40mW)
+
+E predicted angle between the FPs (implemented previously - check `src/figure_plotting.py:D_predicted_angle_with_nearest_linear_combo_plot`)
+    add line for nearest linear combination of the other (non target) vectors
+
+===================================
+For 1.2 
+F 3 color spatially seperate image, (implemented previously, different source image - check `src/figure2.py:subpanel_4` and `_make_3channel_rgb_overlay`)
+
+G 2 channel 2d scatterplot (implemented previously - check `src/figure1.py:subpanel_5`)
+use source image data from - E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\data\fig1_3color_inh_spatial_control_2p3_10072025
+to start try channels 1080 red and 1080 far red (matched mW)
+Add the cell Roi detection and classification overlays to the plots (seperate function for use before GHIJ)
+
+H 3 channel 3d scatterplot (implemented previously - check `src/figure2.py:subpanel_5` and `_compute_fig2_classifications`)
+use source image data from - E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\data\fig1_3color_inh_spatial_control_2p3_10072025
+to start try channels 1. 1040 orange 40mW and 2. 1180 red, 30 mW and 3. 1240 far red 40 mW 
+
+I 3 channel triangle projection (implemented peviusly but missing many features)
+    find a way to balance between all 3 fps (or X FPs) without biasing visual, controlled by flag whether to apply or not - choose same number at same distance (maintain existing amplitude based subselection) in each of 3 “quadrants” around each vector (~120 degree quadrants applied after projection to 2d for 3 FPs - half way between vectors, more generous than the actual classification bounds) (We want this Subselect_balanced_pixels function to be applied first, and then we can pass only the selected pixels in to GHIJ for plotting) 
+    Generalizes this projection to higher dimensions (diamond, pentagon etc. should be fully generalized, inferring number and angle of vectors to project on from number of FPs)
+
+J the angle histogram (implemented previously - check `src/figure1.py:subpanel_7` and `src/figure1.py:compute_angle_to_vector`)
+    lets orient this vertically like in E, basically adding histogram on top of E, although we would like to use the second harmonic generation corrected power...)
+    instead of including all pixels in the histograms we want these to be after the same subsetting that we do to keep it balanced. better "average variance" and So we don’t lose the mcherry relative frequency
+    Fix the angle histogram for higher E  - need to allow the iferred vectors to rotate to match the data or it will look wierd...
+
+For 1.3 
+Source data - E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\data\fig4_3color_proj_mixed_20250710\FOV1 for now, eventually just use a good looking session from sofie. 
+K show z alignment (y axis objective oposition, x axis atch to target plane at 1080NM), 
+
+fig 1k scatterplot triangle projection again (subplot function I), with double vectors for both predicted and system verified <- input images here are spatially overlapping 3 color, not combined seperate FPs
+
+fig 1l 3 color image of spatially overlapping 3 color (subplot function F)
+
+N classification mask image for example image 1l (masks colored be chosen label)
+
+O matching colored traces extracted - no data yet, 
+
+
+======================================
+
+Experimental design graphic for both 2 and 3? Maybe not necessary? 
+
+Fig 2 - angle based seperability metric validation 
+Here is where we do a bunch of the validation - This can mostly use the 3 color inh stacks
+
+
+generic Plot (P) scatterplot_across_FPs_and_channel_subsets (implemented previously - check `src/figure2.py:subpanel_3` / `src/figure1.py:_plot_9_3_actual_vs_predicted_angle` for predicted-vs-actual angle, and `src/figure1_5.py:subpanel_1_5b` for variance-vs-angle)
+ want to reuse for coloring and symbols - we probably want a generic scatterplot_across_FPS that will all use the same coloring and symbols, and just the axis are changing in the figure2 wrappers. get fp colors from config
+
+fig2a (P) scatterplot predicted vs actual angle for single FP
+
+2b (P) scatterplot angle vs variance (previos code used std,)
+    Make sure this is actual angle not predicted angle. Don’t compute if less than a certain number of points in the bin 
+
+pixels and cells correct etc.
+
+generic Plot Q lineplot_across_FPs_and_channel_subsets (implemented previously - check `src/figure1.py:_plot_9_0_percent_correct_vs_intensity` / `src/figure1.py:subpanel_9`)
+2d (Q) pixel intensity vs percent correct
+
+scatterplot - seperability score vs percent correct
+Seperability score needs to be distance to the nearest point on the other vector/ sum of 2x std. I think right now we are using angle
+
+Should have a plot explaining the seperability score metric, with simulated point clouds? Line connecting the two points. Arc to show its the closest. Brackets showing 2 standard deviations along the connecting line. Inset equation - D/(2*(stda+stdb)
+
+Still need to do pixel wise subset agreement plots - then when we add cells, important to get the minimum useable angle. Depends on acquisition time - so go retrieve that. 
+Let’s make these scatterplots of minimum angle vs percent agreement to a ssingle standard. (All combined?) - for both pixel and cell 
+Also could do the line plots of brightness vs agreement for the selected subsets too
+To show the subsets, make the table, use shades of gray with symbols I the cells. Those symbols appear in the scatterplots and the line plot legends 
+
+Still need the cell histograms showing variance of brightness and variance of angle for rois compared to random shuffles 
+
+Look into the errors on the predicted vs actual, also after incorporating the stacks, not just the single images I took -
+Do comparisons of filter pairs at same wavelength
+And wavelength pairs for same filter to determine systematic errors
+Sources are - excitation efficiency, plane misalignment for single images and blood/tissue absorption (sample and depth dependant, both excitation and emission side)?
+
+Add a few plots related to the error - plot error relative to predicted angle to show that the error is always less than the total (there is always residual)
+Also actually do the flourophore delta as well - should show that it’s affecting both channels, and this error may actually be smaller 
+Same plot of error vs predicted delta 
+
+Also want to add a more comprehensive comparison across mice (fps always land in the same spot) 
+
+Also for step 2 of the pipeline we should use the examples (excitation only and emission only) and show how well it aligns with the projection and how it can show where errors are. this could be its own supplemeentary figure
+
+==================================
+notes to self (not direct figure panels)
+
+Points for figure 2- we can predict both angle and variance so we can predict what will be successful. 
+
+We give guidelines for the lower bound - showing that excitation alone and emission alone can be sucessful. 
+We show that variance decreases sub linearly with distance from origin so poor angles can be overcome with longer acquisition time. 
+
+demonstration/validation of two color classification?
+
+Variance is fixed for the system. So we can set the bounds based on the inferred vectors and do accurate classification esp for dual labeled cells. Even when the vectors shift a bit.
+
+Single channel power can change the angle. If you lose power from excitation efficiency or filter tranmission you want to compensate with power to retrieve a better angle. But not overcompensate! 
+=======================================
+
+
+
+Unsure where to put 
+======================
+Explicitly address rubys concern that they move - overlay inferred vectors for all of Sofie’s FOV, dashing per mouse, even different labeling 9exc+inh mice combined) would be great. 
+Also do a histogram of inferred angles relative to predicted - show that inter system error is typically small
+
+?? Try to incorporate errors of excitation efficiency and blood absorption (fit one scale factor across all  pairs) and re- plot the predicted va actual angle (for supplement) 
+
+ Add plot specifically for gcamp bleed through. Look at the most likely channel for mistake. 800 br2 probably. Compare to channel with little bleed through 
+
+Fig 3 - inh, validation and results 
+
+Fig 4 - projections, validation and results 
+
+Fig 5 - 6-8 color 
+
+Fig 5
+function that picks the best channel combination (input full vector and desired number of dimensions)
+    want to make sure it’s actually picking the best angle, most advantaged ratio wise 

@@ -1,0 +1,67 @@
+
+FPbase REST API
+FPbase supports a REST API to search and retrieve protein attributes in JSON or CSV format. This is still a work in development and is subject to change. This page details how to use the current API.
+
+Basics
+A simple way to learn about the API is to build a search using the advanced search query builder, and look at the resulting parameters in the URL. Any URL generated with the query builder can be directly used in the API, simply be replacing /search/ in the URL with /api/proteins/. For instance, a query built on the advanced search builder with the following filters:
+
+Name	contains	green
+Quantum Yield	is greater than or equal to	0.7
+would generate the following url:
+https://www.fpbase.org/search/?name__icontains=green&default_state__qy__gte=0.7
+
+By replacing /search/ in the URL with /api/proteins/:
+https://www.fpbase.org/api/proteins/?name__icontains=green&default_state__qy__gte=0.7
+
+you will now be searching using the protein api. To retrieve the results in JSON or CSV format, add &format=json (or format=csv) to the URL:
+https://www.fpbase.org/api/proteins/?name__icontains=green&default_state__qy__gte=0.7&format=json
+
+Entry points
+/api/proteins/
+Main protein list api
+/api/proteins/basic/
+Dedicated api for 'basic' (non-switchable) proteins that delivers a flat dictionary of attributes (default state is assumed)
+/api/proteins/spectra/
+Retrieve protein spectra
+Searchable Fields
+The following field name and lookups can be used. Fieldnames and lookups must be separated by a double-underscore "__". For example: name__icontains. See below for an explanation of each lookup operator.
+field	available lookups
+name	icontains, iendswith, istartswith, iexact,
+seq	icontains, iendswith, istartswith, cdna_contains
+default_state__ex_max	around, range, lte, gte, exact
+default_state__em_max	around, range, lte, gte, exact
+default_state__lifetime	gte, lte, range, exact
+default_state__maturation	gte, lte, range, exact
+default_state__ext_coeff	gte, lte, range, exact
+default_state__qy	gte, lte, range, exact
+default_state__brightness	gte, lte, range, exact
+default_state__pka	gte, lte, range, exact
+default_state__bleach_measurements__rate	gte, lte, range, exact
+agg	exact
+genbank	iexact
+pdb	contains
+uniprot	iexact
+status	exact
+switch_type	exact, ne
+parent_organism	exact
+primary_reference__year	gte, gt, lt, lte, range, exact
+spectral_brightness	gt, lt
+default_state__ ?
+You will notice that many of the fields describing fluorescence attributes (ex/em max, qy, ext_coeff) must be preceeded by default_state__. This is because some proteins can have multiple states. Currently, the API only searches the default state for a given protein (but it still must be specified in the query).
+
+Lookup Operators
+Here is a description for each of the lookup operators listed in the previous table.
+lt	is less than
+gt	is greater than
+lte	is less than or equal to
+gte	is greater than or equal to
+around	is around
+exact	is (case sensitive)
+ne	is not
+iexact	is (case insensitive)
+range	is between (specified as two comma-separated values)
+contains	contains (case sensitive)
+icontains	contains (case insensitive)
+iendswith	ends with (case insensitive)
+istartswith	starts with (case insensitive)
+cdna_contains	search yields proteins whose amino acid sequence contains the translated version of this DNA sequence

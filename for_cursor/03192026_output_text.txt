@@ -1,0 +1,206 @@
+============================================================
+New Figure 1 + manuscript grid (debug)
+CWD: E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing
+Started: Thu 03/19/2026 15:23:18.94
+============================================================
+
+--- Environment diagnostics (after conda activate) ---
+CONDA_DEFAULT_ENV: spectral-unmixing
+CONDA_PREFIX: C:\Users\Gregg\anaconda3\envs\spectral-unmixing
+PATH (first 250 chars): C:\Users\Gregg\anaconda3\envs\spectral-unmixing;C:\Users\Gregg\anaconda3\envs\spectral-unmixing\Library\mingw-w64\bin;C:\Users\Gregg\anaconda3\envs\spectral-unmixing\Library\usr\bin;C:\Users\Gregg\anaconda3\envs\spectral-unmixing\Library\bin;C:\Users
+
+where python:
+C:\Users\Gregg\anaconda3\envs\spectral-unmixing\python.exe
+C:\Users\Gregg\anaconda3\python.exe
+C:\Users\Gregg\AppData\Local\Microsoft\WindowsApps\python.exe
+
+where pandoc:
+C:\Users\Gregg\AppData\Local\Pandoc\pandoc.exe
+
+where pdflatex:
+C:\Users\Gregg\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe
+
+python --version:
+Python 3.9.12
+
+pandoc --version:
+pandoc 3.8.2.1
+Features: +server +lua
+Scripting engine: Lua 5.4
+User data directory: C:\Users\Gregg\AppData\Roaming\pandoc
+Copyright (C) 2006-2025 John MacFarlane. Web:  https://pandoc.org
+This is free software; see the source for copying conditions. There is no
+warranty, not even for merchantability or fitness for a particular purpose.
+
+pdflatex --version:
+MiKTeX-pdfTeX 4.23 (MiKTeX 25.12)
+© 1982 D. E. Knuth, © 1996-2025 Hàn Thế Thành
+TeX is a trademark of the American Mathematical Society.
+using bzip2 version 1.0.8, 13-Jul-2019
+compiled with curl version 8.4.0; using libcurl/8.4.0 Schannel
+compiled with expat version 2.5; using expat_2.5.0
+compiled with jpeg version 9.5
+compiled with liblzma version 50040002; using 50040002
+compiled with libpng version 1.6.44; using 1.6.44
+compiled with libressl version LibreSSL 3.8.1; using LibreSSL 3.8.1
+compiled with MiKTeX Application Framework version 4.8; using 4.8
+compiled with MiKTeX Core version 4.24; using 4.24
+compiled with MiKTeX Archive Extractor version 4.1; using 4.1
+compiled with MiKTeX Package Manager version 4.10; using 4.10
+compiled with uriparser version 0.9.7
+compiled with xpdf version 4.04
+compiled with zlib version 1.2.13; using 1.2.13
+pdflatex: major issue: So far, you have not checked for MiKTeX updates.
+
+python runtime (sys.executable / sys.prefix):
+sys.executable: C:\Users\Gregg\anaconda3\envs\spectral-unmixing\python.exe
+sys.prefix: C:\Users\Gregg\anaconda3\envs\spectral-unmixing
+CONDA_DEFAULT_ENV: spectral-unmixing
+-----------------------------------------------------
+
+Session is in colab: False
+
+============================================================
+Generating New Figure 1 Subpanels
+============================================================
+
+Subpanel 1a: Panel A placeholder...
+  Saved: results/NewFigure1\presentation_1a.png
+
+Subpanel 1b: Excitation spectra...
+  Saved: results/NewFigure1\presentation_1b.png
+
+Subpanel 1c: Emission spectra with filters...
+  Saved: results/NewFigure1\presentation_1c.png
+
+Subpanel 1d: Unmixing vectors bar chart...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:914: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout(rect=(0.08, 0.0, 0.84, 1))
+  Saved: results/NewFigure1\presentation_1d.png
+
+Subpanel 1e: Predicted angle between FPs...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:1171: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+  Saved: results/NewFigure1\presentation_1e.png
+
+Subpanel 1g: 2-channel 2D scatterplot with vectors + cones...
+DEBUG load_channel_data: TdTomato, 1080nm, Red -> RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for TdTomato, 1080nm, Red: RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG load_channel_data: TdTomato, 1080nm, FarRed -> FarRedEmFilt_1080nm_285poc_600pmt--116_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for TdTomato, 1080nm, FarRed: FarRedEmFilt_1080nm_285poc_600pmt--116_Cycle00001_Ch1_000001.ome.tif
+
+TdTomato data check:
+  ch1_data: dtype=uint16, min=0, max=8191, mean=370.02
+  ch2_data: dtype=uint16, min=0, max=8191, mean=432.37
+DEBUG load_channel_data: mCherry, 1080nm, Red -> RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for mCherry, 1080nm, Red: RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG load_channel_data: mCherry, 1080nm, FarRed -> FarRedEmFilt_1080nm_285poc_600pmt--116_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for mCherry, 1080nm, FarRed: FarRedEmFilt_1080nm_285poc_600pmt--116_Cycle00001_Ch1_000001.ome.tif
+
+mCherry data check:
+  ch1_data: dtype=uint16, min=0, max=8191, mean=370.02
+  ch2_data: dtype=uint16, min=0, max=8191, mean=432.37
+DEBUG load_channel_data: mNeptune, 1080nm, Red -> RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for mNeptune, 1080nm, Red: RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG load_channel_data: mNeptune, 1080nm, FarRed -> FarRedEmFilt_1080nm_285poc_600pmt--116_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for mNeptune, 1080nm, FarRed: FarRedEmFilt_1080nm_285poc_600pmt--116_Cycle00001_Ch1_000001.ome.tif
+
+mNeptune data check:
+  ch1_data: dtype=uint16, min=0, max=8191, mean=370.02
+  ch2_data: dtype=uint16, min=0, max=8191, mean=432.37
+
+Combined data check:
+  ch1_combined: shape=(786432,), dtype=uint16, min=0, max=8191, mean=370.02
+  ch2_combined: shape=(786432,), dtype=uint16, min=0, max=8191, mean=432.37
+
+Sample distance calculations:
+  Sample point 0: ch1=12.0, ch2=9.0, distance=15.00
+  Sample point 1000: ch1=14.0, ch2=27.0, distance=30.41
+  Max distance point: ch1=3839.0, ch2=1800.0, distance=4240.04
+
+Distance stats:
+  min=1.00, max=4240.04, mean=597.07
+  Points with distance > 400: 385860
+  Points with distance > 500: 328023
+  Points with distance > 1000: 144489
+  Points with distance > 2000: 28383
+  compute_classification_zone(TdTomato): 9477 valid angles
+    vec_angle=52.68°, pixel angles: min=4.19°, max=89.21°
+    angle_diffs: min=0.00°, max=44.80°, median=25.46°
+    target_count=8530 out of 9477, half_angle=34.36°
+  compute_classification_zone(mCherry): 9477 valid angles
+    vec_angle=52.68°, pixel angles: min=3.73°, max=90.00°
+    angle_diffs: min=0.01°, max=44.99°, median=25.35°
+    target_count=8530 out of 9477, half_angle=34.28°
+  compute_classification_zone(mNeptune): 9477 valid angles
+    vec_angle=52.68°, pixel angles: min=4.92°, max=88.52°
+    angle_diffs: min=0.01°, max=44.95°, median=25.46°
+    target_count=8530 out of 9477, half_angle=34.28°
+Subpanel 5 - TdTomato: half_angle=34.36°, vec_angle=52.68°
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure1.py:2479: UserWarning: Setting the 'color' property will override the edgecolor or facecolor properties.
+  wedge = Wedge((0, 0), wedge_radius,
+Subpanel 5 - mCherry: half_angle=34.28°, vec_angle=52.68°
+Subpanel 5 - mNeptune: half_angle=34.28°, vec_angle=52.68°
+  Saved: results/NewFigure1\presentation_1g.png
+  Background values: Ch1=56.89, Ch2=63.78, Ch3=73.02
+DEBUG load_channel_data: TdTomato, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: TdTomato, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: TdTomato, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+DEBUG load_channel_data: mCherry, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: mCherry, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: mCherry, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+DEBUG load_channel_data: mNeptune, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: mNeptune, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: mNeptune, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+  compute_classification_zone_3d(TdTomato): 40217 valid angles
+    angles: min=0.24°, max=70.47°, median=8.35°
+    target_count=36196 out of 40217, half_angle=11.06°
+  compute_classification_zone_3d(mCherry): 26240 valid angles
+    angles: min=0.72°, max=56.85°, median=8.91°
+    target_count=23616 out of 26240, half_angle=11.46°
+  compute_classification_zone_3d(mNeptune): 56311 valid angles
+    angles: min=0.03°, max=48.51°, median=9.29°
+    target_count=50680 out of 56311, half_angle=18.14°
+  Saved shared_data cache for 1h/1i: results/NewFigure1\_cache\figure1_hi_shared_data_370c23e278d0.pkl
+
+Subpanel 1h: 3-channel 3D scatterplot with classification cones...
+  Plotting 9057 points
+  Saved: results/NewFigure1\presentation_1h.png
+
+Subpanel 1i: 3-channel triangle projection...
+  Projecting 9057 points to triangle
+  Triangle coordinate ranges: x=[-2678.41, 3806.38], y=[-3173.49, 5053.51]
+  Projected 9057 points to triangle
+  Triangle coordinate ranges: x=[-2678.41, 3806.38], y=[-3173.49, 5053.51]
+  Saved: results/NewFigure1\presentation_1i.png
+
+============================================================
+New Figure 1 generation complete!
+============================================================
+
+============================================================
+Generating New Figure 1 Subpanels
+============================================================
+
+Subpanel 1a: Panel A placeholder...
+  Saved: results/NewFigure1\manuscript_1a.png
+
+Subpanel 1b: Excitation spectra...
+  Saved: results/NewFigure1\manuscript_1b.png
+
+Subpanel 1c: Emission spectra with filters...
+  Saved: results/NewFigure1\manuscript_1c.png
+
+Subpanel 1d: Unmixing vectors bar chart...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:914: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout(rect=(0.08, 0.0, 0.84, 1))
+  Saved: results/NewFigure1\manuscript_1d.png
+
+Subpanel 1e: Predicted angle between FPs...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:1171: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+  Saved: results/NewFigure1\manuscript_1e.png
+
+Subpanel 1g: 2-channel 2D scatterplot with vectors + cones...
+DEBUG load_channel_data: TdTomato, 1080nm, Red -> RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif
+DEBUG: Selected file for TdTomato, 1080nm, Red: RedEmFilt_1080nm_285poc_600pmt--109_Cycle00001_Ch1_000001.ome.tif

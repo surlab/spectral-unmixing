@@ -63,3 +63,8 @@ print(f'Session is in colab: {in_colab}')
 def get_channels(image):
     return image.shape[-1]
 
+
+# Figure-wide configuration moved to `src/figures_config.py`.
+# We re-export these names from `config.py` so the rest of the codebase can continue
+# importing `src.config as cfg` without needing immediate refactors.
+from src.figures_config import *  # noqa: F401,F403

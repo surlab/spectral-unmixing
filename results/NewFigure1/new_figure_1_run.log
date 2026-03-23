@@ -1,0 +1,166 @@
+
+============================================================
+Generating New Figure 1 Subpanels
+============================================================
+
+Subpanel 1a: Panel A placeholder...
+  Saved: results/NewFigure1\presentation_1a.png
+
+Subpanel 1b: Excitation spectra...
+  Saved: results/NewFigure1\presentation_1b.png
+
+Subpanel 1c: Emission spectra with filters...
+  Saved: results/NewFigure1\presentation_1c.png
+
+Subpanel 1d: Unmixing vectors bar chart...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:920: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout(rect=(0.08, 0.0, 0.84, 1))
+  Saved: results/NewFigure1\presentation_1d.png
+
+Subpanel 1e: Predicted angle between FPs...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:1177: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+  Saved: results/NewFigure1\presentation_1e.png
+  Background values: Ch1=56.89, Ch2=63.78, Ch3=73.02
+DEBUG load_channel_data: TdTomato, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: TdTomato, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: TdTomato, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+DEBUG load_channel_data: mCherry, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: mCherry, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: mCherry, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+DEBUG load_channel_data: mNeptune, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: mNeptune, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: mNeptune, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+  compute_classification_zone_3d(TdTomato): 40217 valid angles
+    angles: min=0.24°, max=70.47°, median=8.35°
+    target_count=36196 out of 40217, half_angle=11.06°
+  compute_classification_zone_3d(mCherry): 26240 valid angles
+    angles: min=0.72°, max=56.85°, median=8.91°
+    target_count=23616 out of 26240, half_angle=11.46°
+  compute_classification_zone_3d(mNeptune): 56311 valid angles
+    angles: min=0.03°, max=48.51°, median=9.29°
+    target_count=50680 out of 56311, half_angle=18.14°
+  Saved shared_data cache for 1h/1i: results/NewFigure1\_cache\figure1_hi_shared_data_49174ee7c54e.pkl
+  Balanced pixel selection applied: kept 7013 points
+
+Subpanel 1g: 2-channel 2D scatterplot with vectors + cones...
+  Error in subpanel 1g: Could not map wrapper channel to shared_data channels. Channel cfg={'Excitation wavelength': 1080, 'emission filter': 'Red'} (shared channel cfg keys were: ch1/ch2/ch3 configs)
+Traceback (most recent call last):
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\new_figure_1.py", line 570, in generate_figure_1
+    fig, ax = generate_subpanel_1g(params_dict=params_1g, figure_params=figure_params)
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\new_figure_1.py", line 184, in generate_subpanel_1g
+    return G_two_channel_scatterplot_with_vectors_and_cones_plot(params_dict, ax=ax)
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py", line 1304, in F_two_channel_scatterplot_with_vectors_and_cones_plot
+    ch1_vals = _pick_shared_channel_values(ch1_cfg)
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py", line 1297, in _pick_shared_channel_values
+    raise ValueError(
+ValueError: Could not map wrapper channel to shared_data channels. Channel cfg={'Excitation wavelength': 1080, 'emission filter': 'Red'} (shared channel cfg keys were: ch1/ch2/ch3 configs)
+
+Subpanel 1h: 3-channel 3D scatterplot with classification cones...
+  Plotting 7013 points
+  Saved: results/NewFigure1\presentation_1h.png
+
+Subpanel 1i: 3-channel triangle projection...
+  Saved: results/NewFigure1\presentation_1i.png
+
+Subpanel 1j: balanced angle histogram...
+  compute_classification_zone(TdTomato): 67 valid angles
+    vec_angle=4.15°, pixel angles: min=0.00°, max=56.81°
+    angle_diffs: min=0.08°, max=41.84°, median=4.15°
+    target_count=61 out of 67, half_angle=4.15°
+  compute_classification_zone(mCherry): 657 valid angles
+    vec_angle=9.48°, pixel angles: min=1.67°, max=24.60°
+    angle_diffs: min=0.00°, max=15.12°, median=4.27°
+    target_count=592 out of 657, half_angle=9.28°
+  compute_classification_zone(mNeptune): 1316 valid angles
+    vec_angle=65.27°, pixel angles: min=38.99°, max=75.26°
+    angle_diffs: min=0.00°, max=26.28°, median=4.71°
+    target_count=1185 out of 1316, half_angle=10.13°
+  Saved: results/NewFigure1\presentation_1j.png
+
+============================================================
+New Figure 1 generation complete!
+============================================================
+
+============================================================
+Generating New Figure 1 Subpanels
+============================================================
+
+Subpanel 1a: Panel A placeholder...
+  Saved: results/NewFigure1\manuscript_1a.png
+
+Subpanel 1b: Excitation spectra...
+  Saved: results/NewFigure1\manuscript_1b.png
+
+Subpanel 1c: Emission spectra with filters...
+  Saved: results/NewFigure1\manuscript_1c.png
+
+Subpanel 1d: Unmixing vectors bar chart...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:920: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout(rect=(0.08, 0.0, 0.84, 1))
+  Saved: results/NewFigure1\manuscript_1d.png
+
+Subpanel 1e: Predicted angle between FPs...
+E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py:1177: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+  Saved: results/NewFigure1\manuscript_1e.png
+  Background values: Ch1=56.89, Ch2=63.78, Ch3=73.02
+DEBUG load_channel_data: TdTomato, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: TdTomato, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: TdTomato, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+DEBUG load_channel_data: mCherry, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: mCherry, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: mCherry, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+DEBUG load_channel_data: mNeptune, 1040nm, Orange -> OrangeEmFilt_1040nm_298poc.tif
+DEBUG load_channel_data: mNeptune, 1180nm, Red -> RedEmFilt_1180nm_348poc.tif
+DEBUG load_channel_data: mNeptune, 1240nm, FarRed -> FarRedEmFilt_1240nm_493poc.tif
+  compute_classification_zone_3d(TdTomato): 40217 valid angles
+    angles: min=0.24°, max=70.47°, median=8.35°
+    target_count=36196 out of 40217, half_angle=11.06°
+  compute_classification_zone_3d(mCherry): 26240 valid angles
+    angles: min=0.72°, max=56.85°, median=8.91°
+    target_count=23616 out of 26240, half_angle=11.46°
+  compute_classification_zone_3d(mNeptune): 56311 valid angles
+    angles: min=0.03°, max=48.51°, median=9.29°
+    target_count=50680 out of 56311, half_angle=18.14°
+  Saved shared_data cache for 1h/1i: results/NewFigure1\_cache\figure1_hi_shared_data_0b0ad76826aa.pkl
+  Balanced pixel selection applied: kept 7013 points
+
+Subpanel 1g: 2-channel 2D scatterplot with vectors + cones...
+  Error in subpanel 1g: Could not map wrapper channel to shared_data channels. Channel cfg={'Excitation wavelength': 1080, 'emission filter': 'Red'} (shared channel cfg keys were: ch1/ch2/ch3 configs)
+Traceback (most recent call last):
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\new_figure_1.py", line 570, in generate_figure_1
+    fig, ax = generate_subpanel_1g(params_dict=params_1g, figure_params=figure_params)
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\new_figure_1.py", line 184, in generate_subpanel_1g
+    return G_two_channel_scatterplot_with_vectors_and_cones_plot(params_dict, ax=ax)
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py", line 1304, in F_two_channel_scatterplot_with_vectors_and_cones_plot
+    ch1_vals = _pick_shared_channel_values(ch1_cfg)
+  File "E:\MIT Dropbox\Greggory Heller\gregg_code\spectral-unmixing\src\figure_plotting.py", line 1297, in _pick_shared_channel_values
+    raise ValueError(
+ValueError: Could not map wrapper channel to shared_data channels. Channel cfg={'Excitation wavelength': 1080, 'emission filter': 'Red'} (shared channel cfg keys were: ch1/ch2/ch3 configs)
+
+Subpanel 1h: 3-channel 3D scatterplot with classification cones...
+  Plotting 7013 points
+  Saved: results/NewFigure1\manuscript_1h.png
+
+Subpanel 1i: 3-channel triangle projection...
+  Saved: results/NewFigure1\manuscript_1i.png
+
+Subpanel 1j: balanced angle histogram...
+  compute_classification_zone(TdTomato): 63 valid angles
+    vec_angle=4.55°, pixel angles: min=0.00°, max=60.58°
+    angle_diffs: min=0.30°, max=41.10°, median=4.55°
+    target_count=57 out of 63, half_angle=4.55°
+  compute_classification_zone(mCherry): 633 valid angles
+    vec_angle=9.31°, pixel angles: min=1.72°, max=24.60°
+    angle_diffs: min=0.00°, max=15.29°, median=4.19°
+    target_count=570 out of 633, half_angle=8.58°
+  compute_classification_zone(mNeptune): 1320 valid angles
+    vec_angle=65.44°, pixel angles: min=39.34°, max=75.46°
+    angle_diffs: min=0.00°, max=26.10°, median=4.87°
+    target_count=1188 out of 1320, half_angle=10.24°
+  Saved: results/NewFigure1\manuscript_1j.png
+
+============================================================
+New Figure 1 generation complete!
+============================================================
